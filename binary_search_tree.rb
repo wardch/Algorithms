@@ -47,4 +47,37 @@
 
 # Challenge 2
 
+class Node
+  attr_accessor :left_child, :right_child, :value
 
+  def initialize(value)
+    @value = value
+    @left_child = nil
+    @right_child = nil
+  end
+end
+
+root = Node.new(5)
+root.left_child = Node.new(3)
+root.right_child = Node.new(7)
+root.left_child.right_child = Node.new(4)
+root.left_child.left_child= Node.new(1)
+root.right_child.right_child = Node.new(10)
+root.right_child.left_child = Node.new(6)
+
+def is_this_value_fo_real?(root_node, value)
+  return false if root_node == nil
+  return true if root_node.value == value
+
+  if root_node.value > value
+    is_this_value_fo_real?(root_node.left_child, value)
+  elsif
+    root_node.value < value
+    is_this_value_fo_real?(root_node.right_child, value)
+  end
+end
+
+p is_this_value_fo_real?(root, 111) == false
+p is_this_value_fo_real?(root, 3) == true
+p is_this_value_fo_real?(root, 1311) == false
+p is_this_value_fo_real?(root, 1) == true
